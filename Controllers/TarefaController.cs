@@ -59,8 +59,8 @@ namespace TrilhaApiDesafio.Controllers
 
             _context.Add(tarefa);
             _context.SaveChanges();
-            return Ok(tarefa);
-            // return CreatedAtAction(nameof(ObterPorId), new { id = tarefa.Id }, tarefa);
+
+            return CreatedAtAction(nameof(ObterPorId), new { id = tarefa.Id }, tarefa);
         }
 
         [HttpPut("{id}")]
