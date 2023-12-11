@@ -26,8 +26,8 @@ namespace TrilhaApiDesafio.Controllers
         [HttpGet("ObterTodos")]
         public IActionResult ObterTodos()
         {
-            // TODO: Buscar todas as tarefas no banco utilizando o EF
-            return Ok();
+            var tarefas = _context.Tarefas.ToList();
+            return Ok(tarefas);
         }
 
         [HttpGet("ObterPorTitulo")]
@@ -47,8 +47,6 @@ namespace TrilhaApiDesafio.Controllers
         [HttpGet("ObterPorStatus")]
         public IActionResult ObterPorStatus(EnumStatusTarefa status)
         {
-            // TODO: Buscar  as tarefas no banco utilizando o EF, que contenha o status recebido por parâmetro
-            // Dica: Usar como exemplo o endpoint ObterPorData
             var tarefa = _context.Tarefas.Where(x => x.Status == status);
             return Ok(tarefa);
         }
@@ -97,7 +95,7 @@ namespace TrilhaApiDesafio.Controllers
 
             _context.Remove(tarefaBanco);
             _context.SaveChanges();
-            
+
             return NoContent();
         }
     }
